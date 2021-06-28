@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<launch>
+	<node pkg="rosbag" type="record" name="rosbag_record_node" output="screen" args="record -o /home/xavier/xavier_ssd/bag 
+	/Camera0/pylon_camera_node/image_color/compressed
+	/Camera0/pylon_camera_node/camera_info
+	/Camera1/pylon_camera_node/image_color/compressed
+	/Camera1/pylon_camera_node/camera_info
+	/Camera2/pylon_camera_node/image_color/compressed
+	/Camera2/pylon_camera_node/camera_info
+	/Camera3/pylon_camera_node/image_color/compressed
+	/Camera3/pylon_camera_node/camera_info
+	/Camera4/pylon_camera_node/image_color/compressed
+	/Camera4/pylon_camera_node/camera_info
+	/Camera5/pylon_camera_node/image_color/compressed
+	/Camera5/pylon_camera_node/camera_info
+	/artifact_detections_image/compressed
+	/diagnostics
+	/joint_states
+	/tf
+	/tf_static"
+	/>
+</launch>

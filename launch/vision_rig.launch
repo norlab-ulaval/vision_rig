@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<launch>
+	<!-- Parameter -->
+	<arg name="model" default="$(find vision_rig)/urdf/vision_rig.urdf.xacro" />
+	<arg name="rvizconfig" default="$(find vision_rig)/include/vision_rig/vision_rig_config.rviz" />
+	<!--arg name="rvizconfig" default="$(find vision_rig)/include/vision_rig/vision_rig_config_tf_tool.rviz" /-->
+	<param name="rig_description" command="$(find xacro)/xacro --inorder $(arg model)" />
+
+	<!-- Include URDF file and Rviz config -->
+	<node pkg="robot_state_publisher" type="robot_state_publisher" name="rob_st_pub">
+		<remap from="robot_description" to="rig_description" />
+	</node>
+	<node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true" />
+
+	<!-- Launch cameras and lidar -->
+	<!--include file="$(find pylon_camera)/launch/pylon_camera_node_1_camera.launch" /-->
+	<include file="$(find pylon_camera)/launch/pylon_camera_node_6_cameras.launch" />
+	<include file="$(find lslidar_c16_decoder)/launch/lslidar_c16.launch" />
+	<!--include file="$(find norlab_imu_tools)/launch/interactive_static_transform_publisher.launch" /-->
+
+	<!--Reduce bandwidth camera topics-->
+	<!--node name="throttle_camera3" type="throttle" pkg="topic_tools" args="bytes /camera3/pylon_camera_node/image_raw 5000 0.2" /-->
+
+</launch>

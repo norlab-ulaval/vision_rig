@@ -1,0 +1,141 @@
+<?xml version='1.0'?>
+<robot name="vision_rig" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+   <xacro:property name="M_PI" value="3.1415926535897931"/>
+   <xacro:property name="length_cam" value="0.05" />
+
+   <link name="base_link" />
+   <!--link name="origin_link" /-->
+
+   <link name="lidar_link">
+    <visual>
+     <geometry>
+      <cylinder radius="0.05" length="0.1" />
+     </geometry>
+     <material name="red">
+      <color rgba="1 0 0 0"/>
+     </material>
+    </visual>
+   </link>
+
+   <link name="camera0_link">
+    <visual>
+     <geometry>
+      <box size="${length_cam} ${length_cam} ${length_cam}" />
+     </geometry>
+     <material name="blue">
+      <color rgba="0 0 1 0"/>
+     </material>
+    </visual>
+   </link>
+
+   <link name="camera1_link">
+    <visual>
+     <geometry>
+      <box size="${length_cam} ${length_cam} ${length_cam}" />
+     </geometry>
+     <material name="blue">
+      <color rgba="0 0 1 0"/>
+     </material>
+    </visual>
+   </link>
+
+   <link name="camera2_link">
+    <visual>
+     <geometry>
+      <box size="${length_cam} ${length_cam} ${length_cam}" />
+     </geometry>
+     <material name="blue">
+      <color rgba="0 0 1 0"/>
+     </material>
+    </visual>
+   </link>
+
+   <link name="camera3_link">
+    <visual>
+     <geometry>
+      <box size="${length_cam} ${length_cam} ${length_cam}" />
+     </geometry>
+     <material name="blue">
+      <color rgba="0 0 1 0"/>
+     </material>
+    </visual>
+   </link>
+
+   <link name="camera4_link">
+    <visual>
+     <geometry>
+      <box size="${length_cam} ${length_cam} ${length_cam}" />
+     </geometry>
+     <material name="blue">
+      <color rgba="0 0 1 0"/>
+     </material>
+    </visual>
+   </link>
+
+   <link name="camera5_link">
+    <visual>
+     <geometry>
+      <box size="${length_cam} ${length_cam} ${length_cam}" />
+     </geometry>
+     <material name="blue">
+      <color rgba="0 0 1 0"/>
+     </material>
+    </visual>
+   </link>
+
+   <!--joint name="joint_base_origin" type="fixed">
+    <parent link="base_link" />
+    <child link="origin_link" />
+    <origin xyz="0 0 0" rpy="0 0 0" />
+   </joint-->
+
+   <joint name="joint_base_lidar" type="fixed">
+    <parent link="base_link" />
+    <child link="lidar_link" />
+    <!--origin xyz="0.22114 0 0.41304" rpy="0 ${-10*M_PI/180} ${M_PI}" /--> <!--Simon-Pierre's values (Husky)-->
+    <origin xyz="0.31934 0 0.25611" rpy="0 ${-10*M_PI/180} ${M_PI}"/> <!--Dominic's values (Marmotte)-->
+   </joint>
+
+   <joint name="joint_lidar_camera0" type="fixed">
+    <parent link="lidar_link" />
+    <child link="camera0_link" />
+    <!--origin xyz="0.15809 0.12394 -0.08268" rpy="-1.167301 0.102245 0.949740" /--> <!--Before origin changed-->
+    <origin xyz="0.12759 0.1461 -0.07258" rpy="-1.167301 0.102245 0.949740" /> <!-- After origin changed-->
+   </joint>
+
+   <joint name="joint_lidar_camera1" type="fixed">
+    <parent link="lidar_link" />
+    <child link="camera1_link" />
+    <!--origin xyz="0.34382 0.09629 -0.08268" rpy="-1.3634311444 0.165909317 -0.318686332" /--> <!--Before origin changed-->
+    <origin xyz="0.35547 0.13215 -0.07258" rpy="-1.3634311444 0.165909317 -0.318686332" /> <!--After origin changed-->
+   </joint>
+
+   <joint name="joint_lidar_camera2" type="fixed">
+    <parent link="lidar_link" />                       
+    <child link="camera2_link" />
+    <!--origin xyz="0.41006 -0.03625 -0.08268" rpy="-1.48352986 0 -1.57079632" /--> <!--Before origin changed-->
+    <origin xyz="0.45576 -0.03625 -0.07258" rpy="-1.48352986 0 -1.57079632" /> <!--After origin changed-->
+   </joint>
+
+   <joint name="joint_lidar_camera3" type="fixed">
+    <parent link="lidar_link" />
+    <child link="camera3_link" />
+    <!--origin xyz="0.27487 -0.11869 -0.08268" rpy="-1.3634311444 -0.165909317 -2.82290632" /--> <!--Before origin changed-->
+    <origin xyz="0.28652 -0.15455 -0.07258" rpy="-1.3634311444 -0.165909317 -2.82290632" /> <!--After origin changed-->
+   </joint>
+
+   <joint name="joint_lidar_camera4" type="fixed">
+    <parent link="lidar_link" />
+    <child link="camera4_link" />
+    <!--origin xyz="0.11548 -0.06528 -0.08268" rpy="-1.167301 -0.102245 2.19185" /--> <!--Before origin changed-->
+    <origin xyz="0.08497 -0.08744 -0.07258" rpy="-1.167301 -0.102245 2.19185" /> <!--After origin changed-->
+   </joint>
+
+   <joint name="joint_lidar_camera5" type="fixed">
+    <parent link="lidar_link" />
+    <child link="camera5_link" />
+    <!--origin xyz="0.33903 0 0.05769" rpy="0.1745329 0 1.57079632" /--> <!--Before origin changed-->
+    <origin xyz="0.33403 0 0.11308" rpy="0.1745329 0 1.57079632" /> <!--After origin changed-->
+   </joint>
+</robot>
